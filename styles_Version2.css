@@ -1,0 +1,69 @@
+:root{
+  --bg:#f7f9fb;
+  --card:#ffffff;
+  --accent:#0b66ff;
+  --text:#0b1726;
+  --muted:#6b7785;
+  --danger:#d44;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.4;
+}
+
+.container{
+  max-width:700px;
+  margin:48px auto;
+  padding:24px;
+  background:var(--card);
+  border-radius:10px;
+  box-shadow:0 6px 18px rgba(12,20,40,0.08);
+}
+
+header h1{margin:0 0 6px;font-size:1.6rem}
+.lead{margin:0 0 18px;color:var(--muted)}
+
+.form-row{margin-bottom:14px}
+label{display:block;margin-bottom:6px;font-weight:600}
+input[type="text"],
+input[type="email"],
+textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #dce3ec;
+  border-radius:6px;
+  font-size:1rem;
+  background:white;
+  color:var(--text);
+}
+input:focus, textarea:focus{
+  outline:3px solid rgba(11,102,255,0.12);
+  border-color:var(--accent);
+}
+
+.error{display:block;margin-top:6px;color:var(--danger);font-size:0.9rem;min-height:1.2em}
+
+.radio-group{display:flex;gap:12px;align-items:center}
+.radio-group label{font-weight:500;display:flex;gap:6px;align-items:center}
+
+button[type="submit"]{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+}
+button[disabled]{opacity:0.6;cursor:default}
+
+#formStatus{margin-top:10px;font-weight:600}
+
+footer{margin-top:18px;color:var(--muted);font-size:0.9rem}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
