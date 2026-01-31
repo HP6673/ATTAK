@@ -1,8 +1,6 @@
-// script.js — sends contact form data to your Google Apps Script web app
-// Replace FUNCTION_URL and SECRET if they change
-
-const FUNCTION_URL = 'https://script.google.com/macros/s/AKfycbyyAx-ahZyx9ZWxNBTePLLm_w5TNVmx4rzEq41AqDb212xndnxPzgVWcP-3I2S7oIE96g/exec';
-const SECRET = '2184'; // must match EXPECTED_SECRET in your Apps Script
+// public/script.js
+const FUNCTION_URL = 'https://script.google.com/macros/s/AKfycby1sXw-6PvA56mrqzOF2nyUNqmVwJu6dOzSVAnTaAQHXO46S4dJlT1yEkjVNhD-hlW3CQ/exec';
+const SECRET = '2184';
 
 const form = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -33,24 +31,10 @@ form.addEventListener('submit', async (ev) => {
   };
 
   let hasError = false;
-  if (!data.name || data.name.length < 2) {
-    setError(nameError, 'Please enter your full name (at least 2 characters).');
-    hasError = true;
-  }
-  if (!data.email) {
-    setError(emailError, 'Please enter your email address.');
-    hasError = true;
-  } else {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!re.test(data.email)) {
-      setError(emailError, 'Please enter a valid email address.');
-      hasError = true;
-    }
-  }
-  if (!data.message || data.message.length < 10) {
-    setError(messageError, 'Please enter a message (at least 10 characters).');
-    hasError = true;
-  }
+  if (!data.name || data.name.length < 2) { setError(nameError, 'Please enter your full name (at least 2 characters).'); hasError = true; }
+  if (!data.email) { setError(emailError, 'Please enter your email address.'); hasError = true; }
+  else { const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; if (!re.test(data.email)) { setError(emailError, 'Please enter a valid email address.'); hasError = true; } }
+  if (!data.message || data.message.length < 10) { setError(messageError, 'Please enter a message (at least 10 characters).'); hasError = true; }
   if (hasError) return;
 
   try {
@@ -63,12 +47,10 @@ form.addEventListener('submit', async (ev) => {
       body: JSON.stringify(data)
     });
 
-    // Try parse JSON if possible
     let result = null;
     try { result = await resp.json(); } catch (e) { result = null; }
 
     if (resp.ok) {
-      // Success: redirect to thank-you page
       window.location.href = 'thankyou.html';
     } else {
       console.error('Server error response', resp.status, result);
